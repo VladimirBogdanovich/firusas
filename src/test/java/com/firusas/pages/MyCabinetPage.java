@@ -20,7 +20,7 @@ public class MyCabinetPage {
 
 
     /*Methods*/
-    public void checkUserLogin() {
+    public void checkUserLoginMyCabinet() {
         Assert.assertEquals("MY ACCOUNT", myAccountLink.getText());
         System.out.println("User in my cabinet");
     }

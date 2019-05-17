@@ -34,7 +34,7 @@ public class LoginPageTest {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.urlContains("https://firusas.com/en/cabinet-main"));
         MyCabinetPage myAccount = new MyCabinetPage(driver);
-        myAccount.checkUserLogin();
+        myAccount.checkUserLoginMyCabinet();
     }
 
     @AfterClass
