@@ -43,9 +43,16 @@ public class RegisterPage {
     private WebElement dateOfBirthError;
     @FindBy(xpath = "//*[@id=\"checkbox-marker-checked\"]/path")
     private WebElement checkboxMarker;
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div[2]/div/div[2]/div[2]/div[9]/p/a")
+    private WebElement termsAndConditionsLink;
     @FindBy(xpath = "//*[@id=\"app\"]/div/div[2]/div/div[2]/div[2]/div[10]/button")
     private WebElement registerButton;
-
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div[2]/div/div[2]/div[3]/button")
+    private WebElement alredyRegisteredLink;
+    @FindBy(xpath = "//*[@id=\"modals\"]/div/div/div/div/div[1]")
+    private WebElement signUpPopupText;
+    @FindBy(xpath = "//*[@id=\"modals\"]/div/div/div/button")
+    private WebElement signUpPopupButton;
 
     /*Methods*/
     public void registerUser() {
@@ -66,13 +73,35 @@ public class RegisterPage {
         registerButton.click();
     }
 
-    public void checkRequiredFields() {
+    public void massagesRequiredFields() {
         registerButton.click();
         Assert.assertEquals("The email field is required.", emailError.getText());
         Assert.assertEquals("The first name field is required.", firstNameError.getText());
         Assert.assertEquals("The last name field is required.", lastNameError.getText());
         Assert.assertEquals("The password field is required.", passwordError.getText());
         Assert.assertEquals("The password confirmation field is required.", passwordConfirmationError.getText());
+    }
+
+    public void passwordConfirmation() {
+        passwordTextBox.sendKeys("qwerty@22");
+        passwordConfirmationTextBox.sendKeys("qwerty@22");
+        if (passwordConfirmationError.isDisplayed() == false) {
+            Assert.fail("The password confirmation does not match.");
+            System.out.println("The password confirmation does not match.");
+        } else {
+            System.out.println("The password is match");
+        }
+    }
+
+    public void signUpPopup() {
+        alredyRegisteredLink.click();
+        Assert.assertEquals(signUpPopupText.getText(), "Sign in with Email");
+        signUpPopupButton.click();
+
+    }
+
+    public void termsAndConditions() {
+        termsAndConditionsLink.click();
     }
 }
 

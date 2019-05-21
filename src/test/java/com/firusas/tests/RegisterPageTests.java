@@ -4,6 +4,8 @@ import com.firusas.pages.RegisterCompleatePage;
 import com.firusas.pages.RegisterPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -36,8 +38,29 @@ public class RegisterPageTests {
     @Test
     public void checkRequiredFields() {
         RegisterPage registerPage = new RegisterPage(driver);
-        registerPage.checkRequiredFields();
+        registerPage.massagesRequiredFields();
     }
+
+    @Test
+    public void checkPasswordConfirmation() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.passwordConfirmation();
+    }
+
+    @Test
+    public void checkSignUpPopup() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.signUpPopup();
+    }
+
+    @Test
+    public void checkTermsAndConditionsLink() {
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.termsAndConditions();
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.urlContains("https://firusas.com/terms-and-conditions"));
+    }
+
 
     @AfterClass
     public static void tearDown() {
